@@ -1,0 +1,1 @@
+the nao robot explain to students how to study in bachelor in one of the formation available in bachelor between Moulay Ismail University and FH-Aachen University of Applied Sciences in Germany and what can do after .
