@@ -1,0 +1,76 @@
+topic: ~dialog()
+language: frf
+
+u:([ Bonjour Salut Hello "Bonjour Nao" "Salut Nao"]) ^start(animations/Stand/Gestures/Hey_1) Salut ^stop(animations/Stand/Gestures/Hey_1) , Est ce que vous avez besoin d'avoir des informations sur les formations bachelor ?
+u:([oui "Je voudrais faire une nouvelle formation" "je voudrais faire la formation de bachelor" formation " formation de bachelor" "je voudrais avoir des informations sur la formation de bachelor " "je voudrais avoir des informations sur les formations disponibles "  ])^gotoReactivate(NOUVELLEFORMATION)
+
+    u1:([oui "Bien sur" ok]) % NOUVELLEFORMATION ^start(animations/Stand/Gestures/Hey_1) Très bien!. Nous faisons un Bachelor, Il s'agit d'un programme à double diplôme avec deux certificats, un diplôme de FH Aakhen et un Diplôme d’Université de l’UMI Meknès. Nous avons trois parcours, la Chimie appliquée,^stop(animations/Stand/Gestures/Hey_1) le génie biomédical et le génie informatique. Pour commencer je voudrais savoir est ce que vous êtes prêt pour choisir cette formation !
+
+        # CHOIX BACHELOR
+        u2:(["Oui je choisirai cette formation" "Oui" " Parfait " "Parfait, je choisirai cette formation" "Je voudrais choisir cette formation"]) D’accord, le niveau de cette formation dépend strictement de la spécialité choisie. Alors ^start(animations/Stand/Gestures/Hey_1) Tu préférais travailler dans des spécialités touchant l'informatique, le génie biomédical ou la Chimie appliquée? ^stop(animations/Stand/Gestures/Hey_1)
+
+           # # CHOIX GENIE INFORMATIQUE
+            u3:([ "L'informatique" "informatique" "plutôt informatique" "plutôt l'informatique" "Je préférais l'informatique"]) %TOUTBACHELORINFORMATIQUE Cette formation « Bachelor en Génie Informatique »  est ouverte aux étudiants titulaire d’un baccalauréat scientifique avec de bonne notes en Anglais et en Mathématiques.  ^start(animations/Stand/Gestures/Hey_1) Souhaites-tu tout réécouter ? Ou réécouter les débouchés de la formation? Ou finalement écouter notre formation en Chimie appliquée ou notre formation en génie Biomédical ? ^stop(animations/Stand/Gestures/Hey_1)
+
+                # RÉPETITIONS INFORMATIQUE N1
+                u4: (["je voudrais tout réécouter" tout "je souhaite tout réécouter" " tout réécouter" "réécouter"]) ^gotoReactivate(TOUTBACHELORINFORMATIQUE)
+                u4: (["je voudrais écouter la Chimie appliquée" "Chimie appliquée" "je souhaite écouter la Chimie appliquée" " la Chimie appliquée"]) ^gotoReactivate(TOUTBACHELORCHEMIE) ## change
+                u4: (["je voudrais écouter la formations en génie Biomédical" "je souhaite écouter la formation génie biomédical " " génie Biomédical " "le génie Biomédical " "génie Biomédical"]) ^gotoReactivate(TOUTBECHELORBIOMEDICAL) # change
+                u4: ([débouchés " débouchés de la formation " "oui Débouchés"]) %DEBOUCHEBACHELORINFORMATIQUE On retrouve les lauréats en génie informatique opérant dans le domaine du développement informatique. Allemand.^start(animations/Stand/Gestures/Hey_1) Veux-tu tout réécouter ou réécouter ces débouchés encore une fois ou finalement écouter notre formation en génie biomédical ou en Chimie appliquée ? ^stop(animations/Stand/Gestures/Hey_1)
+
+                    # RÉPETITIONS INFORMATIQUE N2
+                    u5:([ débouchés " débouchés de la formation " "oui débouchés"]) ^gotoReactivate(DEBOUCHEBACHELORINFORMATIQUE)
+
+                    u5: (["je voudrais tout réécouter" tout "je souhaite tout réécouter" "tout réécouter" "réécouter"]) ^gotoReactivate(TOUTBACHELORINFORMATIQUE)
+
+                    u5: (["je soudrais écouter la Chimie appliquée" "je voudrais écouter la Chimie appliquée " " la Chimie appliquée " "Chimie appliquée"]) ^gotoReactivate(TOUTBACHELORCHEMIE) ###change
+
+                    u5: (["je voudrais écouter la formations en génie Biomédical" "je voudrais écouter le  reste" " génie biomédical " "le reste"]) ^gotoReactivate(TOUTBECHELORBIOMEDICAL)  ## change
+
+            #  CHOIX BACHELOR CHEMIE
+            u3:([ "la chimie appliquée" "chimie appliquée" "plutôt la Chimie appliquée" "Je préferais la Chimie appliquée"]) %TOUTBACHELORCHEMIE Cette formation « Bachelor en Chimie appliquée »  est ouverte aux étudiants titulaire d’un baccalauréat scientifique avec de bonne notes en Anglais, en Mathématiques et en Physique-Chimie.
+^start(animations/Stand/Gestures/Hey_1) Souhaites-tu tout réécouter ? Ou réécouter les débouchés de la formation? Ou finalement écouter notre formation en Informatique ou notre formation en génie Biomédical ? ^stop(animations/Stand/Gestures/Hey_1)
+
+                # RÉPETITIONS CHIMIE APPLIQUEE N1
+                u4: (["je voudrais tout réécouter" tout "je souhaite tout réécouter" " tout réécouter" "réécouter"]) ^gotoReactivate(TOUTBACHELORCHEMIE)
+
+                u4: (["je voudrais écouter l’informatique" "je souhaite écouter l’informatique " " l’informatique " "informatique"]) ^gotoReactivate(TOUTBACHELORINFORMATIQUE) # change
+
+                u4: (["je voudrais écouter la formations en génie Biomédical" "je souhaite écouter la formation génie biomédical " " génie biomédical " "le génie Biomédical "]) ^gotoReactivate(TOUTBECHELORBIOMEDICAL) # change
+
+                u4: ([débouchés " débouchés de la formation " "oui Débouchés"]) %DEBOUCHEBACHELORCHEMIE En retrouve les lauréats en Chimie appliquée pourront intégrer différents domaines comme l’industrie chimique ou plastique ou autre. Allemand.^start(animations/Stand/Gestures/Hey_1) Veux-tu tout réécouter ou réécouter ces débouchés encore une fois ou finalement écouter notre formation en Informatique ou en biomédical? ^stop(animations/Stand/Gestures/Hey_1)
+
+
+                    # RÉPETITIONS CHIMIE APPLIQUEE N2
+                    u5:([ débouchés " débouchés de la formation " "oui Débouchés"]) ^gotoReactivate(DEBOUCHEBACHELORCHEMIE)
+                    u5: (["je voudrais tout réécouter" tout "je souhaite tout réécouter" "tout réécouter" "réécouter"]) ^gotoReactivate(TOUTBACHELORCHEMIE)
+                    u5: (["je voudrais écouter l’informatique" "je voudrais écouter l’informatique" " l’informatique " "informatique"]) ^gotoReactivate(TOUTBACHELORINFORMATIQUE) # change
+                    u5: (["je voudrais écouter la formations en génie Biomédical" " génie biomédical " "le reste"]) ^gotoReactivate(TOUTBECHELORBIOMEDICAL) ## change
+
+
+            # CHOIX BACHELOR GENIE BIOMEDICAL
+            u3:([ "autre chose" "autre" "plutôt autre chose" "Je préferais autre chose" "génie biomédical" biomédical]) %TOUTBECHELORBIOMEDICAL Cette formation « Bachelor en Génie Biomédical »  est ouverte aux étudiants titulaire d’un baccalauréat scientifique avec de bonne notes en Anglais et en Mathématiques, en Physique.   ^start(animations/Stand/Gestures/Hey_1) Souhaites-tu tout réécouter ? Ou réécouter les débouchés de la formation? Ou finalement écouter notre formation en Chimie appliquée ou notre formation Informatique ? ^stop(animations/Stand/Gestures/Hey_1)
+
+                # RÉPETITIONS GENIE IBIOMEDICAL N1
+                u4: (["je voudrais tout réécouter" tout "je souhaite tout réécouter" " tout réécouter" "réécouter"]) ^gotoReactivate(TOUTBECHELORBIOMEDICAL)
+                u4: (["je voudrais écouter l’informatique" "je souhaite écouter l’informatique " " l’informatique " "informatique"]) ^gotoReactivate(TOUTBACHELORINFORMATIQUE) # change
+                u4: (["je voudrais écouter la Chimie appliquée" "je souhaite écouter la Chimie appliquée " " la Chimie appliquée " "Chimie appliquée" Chimie]) ^gotoReactivate(TOUTBACHELORCHEMIE)  ## change
+                u4: ([débouchés " débouchés de la formation " "oui Débouchés"]) %DEBOUCHEBACHELORBIOMEDICAL On retrouve des Ingénieurs biomédicaux dans des entreprises spécialisés dans le développement d’équipement biomédicaux, en hôpitaux et autre établissement de la santé. ^start(animations/Stand/Gestures/Hey_1) Veux-tu tout réécouter ou réécouter ces débouchés encore une fois ou finalement écouter notre formation en Informatique ou en Chimie appliquée ? ^stop(animations/Stand/Gestures/Hey_1)
+
+                    # RÉPETITIONS GENIE IBIOMEDICAL N2
+                    u5: (["je voudrais tout réécouter" tout "je souhaite tout réécouter" "tout réécouter" "réécouter"]) ^gotoReactivate(TOUTBECHELORBIOMEDICAL)
+                    u5:([ débouchés " débouchés de la formation " "oui Débouchés"]) ^gotoReactivate(DEBOUCHEBACHELORBIOMEDICAL)
+                    u5: (["je voudrais écouter l’informatique" "je soudrais écouter l’informatique" " l’informatique " "informatique"]) ^gotoReactivate(TOUTBACHELORINFORMATIQUE) ## change
+                    u5: (["je voudrais écouter la Chimie appliquée" "je soudrais écouter la Chimie appliquée " " la Chimie appliquée " "chimie appliquée" "chimie"]) ^gotoReactivate(TOUTBACHELORCHEMIE) # change
+
+u:([Non "Non merci" "Sans façon"]) je vous informe que j'ai été programmé par des étudiants de l'université Moulay Ismail. Au revoir et à trés b
+
+u:(e:Dialog/NotSpeaking20)  $stop=1
+
+u:([B1 "salle 1"])  $consigne=84
+u:(["B2"  "salle 2"]) tres bien, c'est partie les amis $consigne=64
+u:( "B3" "salle 3") parfait, jespère que tu nes pas presse car je ne marche pas tres vite $consigne=112
+
+
+
+                
